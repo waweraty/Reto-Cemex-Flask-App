@@ -29,7 +29,7 @@ class Regresor:
 
 #, template_folder=TEMPLATE, static_folder=STATIC
 app = Flask(__name__)
-ROOT=os.path.dirname(os.path.abspath(__file__))
+ROOT=os.path.dirname(os.path.abspath("ObjectFile.picl"))
 
 MODEL_PATH = os.path.join(ROOT, "ObjectFile.picl")  
 # set path to the model
