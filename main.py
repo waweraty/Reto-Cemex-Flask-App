@@ -5,35 +5,19 @@ import numpy as np
 import os
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.multioutput import MultiOutputRegressor
+import RegresorClass
+from RegresorClass import Regresor
 
 #TEMPLATE = '/templates'
 #STATIC = '/static'
 
-class Regresor:
-    def __init__(self, regresor):
-        self.regressor = regresor
-        
-    def calculaOptimo(self, datos_entrada):
-        datos = np.array(datos_entrada)
-        datos = datos.reshape(1, -1)
-        datos_salida = self.regressor.predict(datos)
-        return datos_salida
-    
-    def imprimeOptimo(self, datos_entrada):
-        datos = np.array(datos_entrada)
-        datos = datos.reshape(1, -1)
-        EE = self.regressor.predict(datos)[0][0]
-        EC = self.regressor.predict(datos)[0][1]
-        cost = self.regressor.predict(datos)[0][2]
-        print('EE: %s\nEC: %s\nCosto Ponderado unitario: %s'% (EE,EC,cost))
-
 class CustomUnpickler(pickle.Unpickler):
 
     def find_class(self, module, name):
-        if name == 'Manager':
-            from settings import Manager
-            return Manager
-        return super().find_class(module, name)
+        try:
+            return super().find_class(__name__, name)
+        except AttributeError:
+            return super().find_class(module, name)
 
 #, template_folder=TEMPLATE, static_folder=STATIC
 app = Flask(__name__)
