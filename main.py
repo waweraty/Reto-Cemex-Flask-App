@@ -12,9 +12,8 @@ from RegresorClass import Regresor
 
 #, template_folder=TEMPLATE, static_folder=STATIC
 app = Flask(__name__)
-APP_ROOT = os.path.dirname(os.path.abspath('ObjectFile.picl'))     
-# set file directory path
-MODEL_PATH = os.path.join(APP_ROOT, "ObjectFile.picl")  
+
+MODEL_PATH = os.path.join(os.getcwd(), "ObjectFile.picl")  
 # set path to the model
 model = pickle.load(open(MODEL_PATH, 'rb'))
 # load the pickled model
