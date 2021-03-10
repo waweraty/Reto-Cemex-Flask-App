@@ -33,7 +33,8 @@ ROOT=os.path.dirname(os.path.abspath("ObjectFile.picl"))
 
 MODEL_PATH = os.path.join(ROOT, "ObjectFile.picl")  
 # set path to the model
-model = pickle.load(open(MODEL_PATH, 'rb'))
+#model = pickle.load(open(MODEL_PATH, 'rb'))
+model = pickle.load(open("ObjectFile.picl", 'rb'))
 # load the pickled model
 
 @app.route("/", methods=['GET', 'POST'])                        
