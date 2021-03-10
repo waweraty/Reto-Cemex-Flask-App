@@ -27,6 +27,14 @@ class Regresor:
         cost = self.regressor.predict(datos)[0][2]
         print('EE: %s\nEC: %s\nCosto Ponderado unitario: %s'% (EE,EC,cost))
 
+class CustomUnpickler(pickle.Unpickler):
+
+    def find_class(self, module, name):
+        if name == 'Manager':
+            from settings import Manager
+            return Manager
+        return super().find_class(module, name)
+
 #, template_folder=TEMPLATE, static_folder=STATIC
 app = Flask(__name__)
 ROOT=os.path.dirname(os.path.abspath("ObjectFile.picl"))
@@ -34,7 +42,7 @@ ROOT=os.path.dirname(os.path.abspath("ObjectFile.picl"))
 MODEL_PATH = os.path.join(ROOT, "ObjectFile.picl")  
 # set path to the model
 #model = pickle.load(open(MODEL_PATH, 'rb'))
-model = pickle.load(open("ObjectFile.picl", 'rb'))
+model = CustomUnpickler(open("ObjectFile.picl", 'rb')).load()
 # load the pickled model
 
 @app.route("/", methods=['GET', 'POST'])                        
