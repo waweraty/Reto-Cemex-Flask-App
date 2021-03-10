@@ -64,4 +64,4 @@ def make_prediction():
   return render_template('predictionpro.html', pee=pee,pec=pec,pcpu=pcpu,c=final_features[0][0],d=final_features[0][1],tp=final_features[0][2])
 
 if __name__ == '__main__':
-     app.run(host="127.0.0.1",port=8080,debug=True)
+     app.run(host="127.0.0.1",port=8080)
